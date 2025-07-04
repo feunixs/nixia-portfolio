@@ -16,6 +16,7 @@ import LoadingScreen from './components/LoadingScreen';
 import { initialDesktopIcons, getIconComponent } from './config/desktop.js';
 import { useWindows } from './context/WindowContext.jsx';
 import { criticalAssets } from './config/assets.js';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -123,6 +124,7 @@ function App() {
 
   return (
     <>
+      <Analytics />
       <LoadingScreen isLoading={isLoading} progress={progress} />
       <div
         className="App"
