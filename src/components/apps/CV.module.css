@@ -1,0 +1,96 @@
+.cvContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #3c3c3c; /* Darker background for contrast */
+  color: var(--text-color);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pageControls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.controlButton {
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.controlButton:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.controlButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 0.9rem;
+  font-weight: 500;
+  min-width: 80px;
+  text-align: center;
+}
+
+.downloadButton {
+  background-color: var(--accent-color);
+  color: var(--window-bg);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.downloadButton:hover {
+  background-color: #ff5c5c; /* A slightly lighter shade for hover */
+  transform: translateY(-2px);
+}
+
+.documentContainer {
+  flex-grow: 1;
+  overflow: auto; /* Important for scrolling long PDFs */
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.react-pdf__Page__canvas {
+  max-width: 100%;
+  height: auto !important; /* Override default height */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.2rem;
+}

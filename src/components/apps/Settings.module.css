@@ -1,0 +1,38 @@
+.settingsContainer {
+  padding: 15px;
+}
+
+.settingsContainer h2 {
+  margin-top: 0;
+  color: #f0a048;
+}
+
+.wallpaperGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.wallpaperChoice {
+  cursor: pointer;
+  text-align: center;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 80px;
+  border: 2px solid var(--border-color);
+  border-radius: 6px;
+  transition: border-color 0.2s ease;
+}
+
+.wallpaperChoice:hover .thumbnail {
+  border-color: #f0a048;
+}
+
+.wallpaperChoice span {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,51 @@
+.viewerContainer {
+  display: flex;
+  height: 100%;
+  background-color: #2e2e2e;
+  color: #dcdcdc;
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.buttonContainer {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid #444;
+}
+
+.launchButton {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.launchButton:hover {
+  background-color: #357abd;
+}

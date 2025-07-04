@@ -1,0 +1,85 @@
+.galleryContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #2d2d2d;
+  color: white;
+}
+
+.mainImageContainer {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.mainImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 10;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.navButton:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.left {
+  left: 10px;
+}
+
+.right {
+  right: 10px;
+}
+
+.thumbnailContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 50px;
+  object-fit: cover;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  opacity: 0.6;
+}
+
+.thumbnail:hover {
+  opacity: 1;
+}
+
+.active {
+  border-color: #4a90e2;
+  opacity: 1;
+}

@@ -1,0 +1,23 @@
+.errorFallback {
+  background-color: #2d2d2d;
+  color: #ff5555;
+  padding: 20px;
+  border: 1px solid #ff5555;
+  border-radius: 5px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.errorFallback h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+}
+
+.errorFallback p {
+  margin: 0;
+  font-family: monospace;
+}
