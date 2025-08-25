@@ -14,10 +14,10 @@
   --hover-bg: rgba(255, 255, 255, 0.1);
   
   /* Mobile-first responsive variables */
-  --topbar-height: 48px; /* Larger for mobile touch */
+  --topbar-height: 52px; /* Larger for mobile touch */
   --dock-width: 100%; /* Full width on mobile */
-  --dock-height: 60px; /* Bottom dock on mobile */
-  --content-padding: 16px;
+  --dock-height: 70px; /* Bottom dock on mobile */
+  --content-padding: 12px;
 }
 
 /* Desktop overrides */

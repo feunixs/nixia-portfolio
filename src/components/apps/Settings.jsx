@@ -17,7 +17,7 @@ const Settings = ({ setWallpaper }) => {
             <div
               className={styles.thumbnail}
               style={{
-                background: wp.value.startsWith('#')
+                background: wp.value && wp.value.startsWith('#')
                   ? wp.value
                   : `url(${wp.value})`,
                 backgroundSize: 'cover',
