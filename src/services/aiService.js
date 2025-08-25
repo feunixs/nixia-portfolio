@@ -501,7 +501,7 @@ Jawab dalam bahasa Indonesia dengan profesional, informatif, dan membantu. Jawab
       
       return null;
       
-    } catch (error) {
+    } catch {
       // Silent error handling for production
       return null;
     }
@@ -550,7 +550,7 @@ Answer:`;
       
       return null;
       
-    } catch (error) {
+    } catch {
       // Silent error handling for production
       return null;
     }
@@ -583,7 +583,7 @@ Answer:`;
 
       // If all APIs fail, return enhanced fallback with intelligent routing
       return this.getFallbackResponse(message);
-    } catch (error) {
+    } catch {
       // Silent error handling for production
       return this.getFallbackResponse(message);
     }

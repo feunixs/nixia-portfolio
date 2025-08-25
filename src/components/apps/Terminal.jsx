@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import styles from './Terminal.module.css';
 import getCommands, { welcomeBanner } from '../../config/terminal';
-import { useWindow } from '../../context/WindowContext';
 import aiService from '../../services/aiService.js';
 
 // Helper function to render text with clickable links
@@ -68,7 +67,7 @@ const Terminal = ({ onClose, desktopIcons = [], onOpenCv, onOpenAbout }) => {
       // If not a command, treat as AI question
       try {
         output = await aiService.chat(commandStr);
-      } catch (error) {
+      } catch {
         output = `command not found: ${cmd}`;
       }
     }

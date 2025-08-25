@@ -1,4 +1,6 @@
-import '@testing-library/jest-dom';
+/* eslint-env node */
+/* global global */
+import { vi } from 'vitest';
 
 // Mock window.matchMedia
 Object.defineProperty(window, 'matchMedia', {
@@ -10,21 +12,20 @@ Object.defineProperty(window, 'matchMedia', {
     addListener: vi.fn(), // deprecated
     removeListener: vi.fn(), // deprecated
     addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
     dispatchEvent: vi.fn(),
   })),
 });
 
 // Mock IntersectionObserver
-global.IntersectionObserver = vi.fn().mockImplementation(() => ({
+global.IntersectionObserver = vi.fn(() => ({
   observe: vi.fn(),
-  unobserve: vi.fn(),
   disconnect: vi.fn(),
+  unobserve: vi.fn(),
 }));
 
 // Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
+global.ResizeObserver = vi.fn(() => ({
   observe: vi.fn(),
-  unobserve: vi.fn(),
   disconnect: vi.fn(),
+  unobserve: vi.fn(),
 }));
