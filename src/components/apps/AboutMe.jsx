@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './AboutMe.module.css';
-import { FiGithub, FiInstagram, FiMail, FiPhone } from 'react-icons/fi';
+import { FiGithub, FiInstagram, FiMail, FiPhone, FiLinkedin } from 'react-icons/fi';
 
 const AboutMe = () => {
   const user = {
@@ -14,6 +14,7 @@ const AboutMe = () => {
     email: 'feunixwork@gmail.com',
     phone: '(+62) 896-7775-0947',
     github: 'https://github.com/feunixs',
+    linkedin: 'https://www.linkedin.com/in/feunix',
     instagram: 'https://www.instagram.com/feunixs',
     skills: {
       frontend: [
@@ -123,6 +124,14 @@ const AboutMe = () => {
               className={styles.link}
             >
               <FiGithub /> GitHub
+            </a>
+            <a
+              href={user.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+            >
+              <FiLinkedin /> LinkedIn
             </a>
             <a
               href={user.instagram}
