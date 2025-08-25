@@ -1,6 +1,8 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import styles from './Terminal.module.css';
-import getCommands, { welcomeBanner } from '../../config/terminal.js';
+import getCommands, { welcomeBanner } from '../../config/terminal';
+import { useWindow } from '../../context/WindowContext';
+import aiService from '../../services/aiService.js';
 
 // Helper function to render text with clickable links
 const renderWithLinks = (text) => {
@@ -55,15 +57,20 @@ const Terminal = ({ onClose, desktopIcons = [], onOpenCv, onOpenAbout }) => {
     endOfHistoryRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [history]);
 
-  const processCommand = (commandStr) => {
-    const [cmd, ...args] = commandStr.trim().toLowerCase().split(' ');
-    const command = commands[cmd];
+  const processCommand = async (commandStr) => {
+    const [cmd, ...args] = commandStr.trim().split(' ');
+    const command = commands[cmd.toLowerCase()];
 
     let output;
     if (command) {
-      output = command.execute(args);
+      output = await command.execute(args);
     } else if (cmd) {
-      output = `command not found: ${cmd}`;
+      // If not a command, treat as AI question
+      try {
+        output = await aiService.chat(commandStr);
+      } catch (error) {
+        output = `command not found: ${cmd}`;
+      }
     }
 
     if (output !== null && output !== undefined) {

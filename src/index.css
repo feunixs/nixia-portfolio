@@ -12,6 +12,22 @@
   --border-color: rgba(255, 255, 255, 0.1);
   --accent-color: #e95420; /* Ubuntu Orange */
   --hover-bg: rgba(255, 255, 255, 0.1);
+  
+  /* Mobile-first responsive variables */
+  --topbar-height: 48px; /* Larger for mobile touch */
+  --dock-width: 100%; /* Full width on mobile */
+  --dock-height: 60px; /* Bottom dock on mobile */
+  --content-padding: 16px;
+}
+
+/* Desktop overrides */
+@media (min-width: 768px) {
+  :root {
+    --topbar-height: 28px;
+    --dock-width: 56px;
+    --dock-height: auto;
+    --content-padding: 20px;
+  }
 }
 
 body {
@@ -40,10 +56,18 @@ body {
 
 .desktop-icons-container {
   position: absolute;
-  top: 24px; /* Below TopBar */
-  left: 48px; /* Right of Dock */
+  top: var(--topbar-height);
+  left: 0;
   right: 0;
-  bottom: 0;
-  padding: 20px;
+  bottom: var(--dock-height, 0);
+  padding: var(--content-padding);
   box-sizing: border-box;
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .desktop-icons-container {
+    left: var(--dock-width);
+    bottom: 0;
+  }
 }

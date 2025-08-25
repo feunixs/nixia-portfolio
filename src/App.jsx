@@ -145,7 +145,7 @@ function App() {
               label={icon.label}
               position={icon.position}
               icon={getIconComponent(icon)}
-              onDoubleClick={() => openWindow(icon)}
+              onClick={() => openWindow(icon)}
               onSelect={() => setSelectedIcon(icon.id)}
               isSelected={selectedIcon === icon.id}
               draggable="true"

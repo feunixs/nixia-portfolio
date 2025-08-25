@@ -2,12 +2,20 @@
   background-color: #1e1e1e;
   color: #d4d4d4;
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-  font-size: 0.9rem;
-  padding: 10px;
+  font-size: 1rem;
+  padding: 16px;
   height: 100%;
   overflow-y: auto;
   box-sizing: border-box;
   cursor: text;
+}
+
+/* Desktop: smaller text and padding */
+@media (min-width: 768px) {
+  .terminal {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
 }
 
 .inputLine {
@@ -45,20 +53,35 @@
 
 .neofetchContainer {
   display: flex;
-  gap: 20px;
-  align-items: stretch; /* This will make children have the same height */
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
 }
 
 .neofetchImage {
-  width: 210px; /* Increased width to prevent cropping */
-  height: 210px;
-  margin-top: auto;
-  margin-bottom: auto;
+  width: 150px;
+  height: 150px;
   background-image: url('/assets/images/profile.svg');
   background-size: cover;
   background-position: center;
   border-radius: 8px;
-  flex-shrink: 0; /* Prevents the image from shrinking */
+  flex-shrink: 0;
+}
+
+/* Desktop: side-by-side layout */
+@media (min-width: 768px) {
+  .neofetchContainer {
+    flex-direction: row;
+    gap: 20px;
+    align-items: stretch;
+  }
+  
+  .neofetchImage {
+    width: 210px;
+    height: 210px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
 }
 
 .neofetchInfo {

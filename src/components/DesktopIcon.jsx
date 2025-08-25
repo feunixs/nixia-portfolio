@@ -4,7 +4,7 @@ import styles from './DesktopIcon.module.css';
 const DesktopIcon = ({
   icon,
   label,
-  onDoubleClick,
+  onClick,
   onSelect,
   isSelected,
   draggable,
@@ -20,6 +20,9 @@ const DesktopIcon = ({
   const handleClick = (e) => {
     e.stopPropagation(); // Prevent desktop click from deselecting
     onSelect();
+    if (onClick) {
+      onClick();
+    }
   };
 
   const containerClasses = [
@@ -44,7 +47,6 @@ const DesktopIcon = ({
       className={containerClasses}
       style={style}
       onClick={handleClick}
-      onDoubleClick={onDoubleClick}
       draggable={draggable}
       onDragStart={onDragStart}
       onDragOver={onDragOver}

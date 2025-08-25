@@ -1,27 +1,59 @@
 .dock {
   position: fixed;
+  /* Mobile: bottom dock */
+  bottom: 0;
   left: 0;
-  top: 28px; /* Start below the TopBar */
-  height: calc(100% - 28px); /* Fill remaining height */
-  width: 56px; /* Increased width for better spacing */
+  right: 0;
+  height: var(--dock-height);
+  width: 100%;
   background-color: var(--dock-bg);
   backdrop-filter: blur(12px);
   display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Pushes utility apps to the bottom */
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  padding: 12px 0; /* Reset padding as top position handles the offset */
+  padding: 8px 16px;
   box-sizing: border-box;
-  z-index: 1000; /* Ensure it's above windows */
-  border-right: 1px solid var(--border-color);
+  z-index: 1000;
+  border-top: 1px solid var(--border-color);
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Desktop: side dock */
+@media (min-width: 768px) {
+  .dock {
+    top: var(--topbar-height);
+    bottom: auto;
+    left: 0;
+    right: auto;
+    height: calc(100% - var(--topbar-height));
+    width: var(--dock-width);
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-top: none;
+    border-right: 1px solid var(--border-color);
+    overflow: visible;
+  }
 }
 
 .mainApps,
 .utilityApps {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  width: 100%;
+  gap: 8px;
+}
+
+/* Desktop: vertical layout */
+@media (min-width: 768px) {
+  .mainApps,
+  .utilityApps {
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
 }
 
 .dockIconContainer {
@@ -29,10 +61,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 48px; /* Taller click area */
+  width: 48px;
+  height: 48px;
   cursor: pointer;
-  margin-bottom: 4px;
+  margin: 0 4px;
+}
+
+/* Desktop: vertical spacing */
+@media (min-width: 768px) {
+  .dockIconContainer {
+    width: 100%;
+    margin: 0 0 4px 0;
+  }
 }
 
 .dockIcon {
@@ -76,8 +116,17 @@
 }
 
 .separator {
-  height: 1px;
-  width: 70%;
+  width: 1px;
+  height: 70%;
   background-color: var(--border-color);
-  margin: 8px 0;
+  margin: 0 8px;
+}
+
+/* Desktop: horizontal separator */
+@media (min-width: 768px) {
+  .separator {
+    height: 1px;
+    width: 70%;
+    margin: 8px 0;
+  }
 }

@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80px;
-  padding: 8px;
+  width: 90px;
+  padding: 12px 8px;
   border-radius: 8px;
   cursor: pointer;
   transition:
@@ -12,6 +12,14 @@
     transform 0.1s ease-out;
   text-align: center;
   user-select: none;
+}
+
+/* Desktop: smaller icons */
+@media (min-width: 768px) {
+  .iconContainer {
+    width: 80px;
+    padding: 8px;
+  }
 }
 
 .iconContainer:hover,
@@ -24,15 +32,28 @@
 }
 
 .icon {
-  font-size: 2.5rem; /* 40px */
-  margin-bottom: 4px;
+  font-size: 3rem; /* Larger for mobile touch */
+  margin-bottom: 6px;
 }
 
 .label {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--text-color);
   word-break: break-word;
+  line-height: 1.2;
+}
+
+/* Desktop: smaller icon and text */
+@media (min-width: 768px) {
+  .icon {
+    font-size: 2.5rem;
+    margin-bottom: 4px;
+  }
+  
+  .label {
+    font-size: 0.8rem;
+  }
 }
 
 .dragging {
