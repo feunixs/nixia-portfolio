@@ -1,3 +1,5 @@
+import aiService from '../services/aiService.js';
+
 const getCommands = (dependencies) => {
   const {
     desktopIcons = [],

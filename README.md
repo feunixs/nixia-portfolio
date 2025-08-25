@@ -2,7 +2,7 @@
 
 ![Nixia Portfolio](https://nixia-erp.vercel.app/images/nixia-portfolio.png) 
 
-Sebuah portofolio pribadi yang dirancang dengan antarmuka dan pengalaman pengguna yang menyerupai sistem operasi Linux (Ubuntu). Dibangun dari awal menggunakan React dan Vite untuk menciptakan pengalaman desktop yang interaktif dan imersif langsung di browser Anda.
+Sebuah portofolio pribadi yang dirancang dengan antarmuka dan pengalaman pengguna yang menyerupai sistem operasi macOS. Dibangun dari awal menggunakan React dan Vite untuk menciptakan pengalaman desktop yang interaktif dan imersif langsung di browser Anda.
 
 ## ✨ Fitur Utama
 
@@ -15,7 +15,7 @@ Sebuah portofolio pribadi yang dirancang dengan antarmuka dan pengalaman penggun
 
 ## 🛠️ Tumpukan Teknologi
 
--   **Framework**: [React](https://reactjs.org/) 18+
+-   **Framework**: [React](https://reactjs.org/) 19.1.0
 -   **Build Tool**: [Vite](https://vitejs.dev/)
 -   **Bahasa**: JavaScript (ES6+)
 -   **Styling**: CSS Modules & CSS Variables

@@ -12,7 +12,7 @@ const AboutMe = () => {
     education:
       'Completed 6 semesters towards a Bachelor of Information Systems at Budi Luhur University, building a strong theoretical foundation before transitioning to project-based learning to further specialize my skills.',
     email: 'feunixwork@gmail.com',
-    phone: '(+62) 0852-8187-8398',
+    phone: '(+62) 896-7775-0947',
     github: 'https://github.com/feunixs',
     instagram: 'https://www.instagram.com/feunixs',
     skills: {
