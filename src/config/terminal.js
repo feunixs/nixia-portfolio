@@ -132,6 +132,9 @@ export const welcomeBanner = [
   '',
   'Welcome to my interactive portfolio!',
   "Type 'help' to discover all the things you can do.",
+  '',
+  '🤖 AI Assistant: Ask me anything about Zaki or this portfolio!',
+  '   Example: "Tell me about your experience" or "What technologies do you use?"',
 ];
 
 export default getCommands;
