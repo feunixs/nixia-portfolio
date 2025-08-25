@@ -1,0 +1,21 @@
+{
+  "name": "Nixia Portfolio - Muhamad Zaki (Feunix)",
+  "short_name": "Nixia Portfolio",
+  "description": "Interactive portfolio with macOS design by Muhamad Zaki (Feunix), Full Stack Developer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1e1e1e",
+  "theme_color": "#1e1e1e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "business"],
+  "lang": "en",
+  "dir": "ltr"
+}

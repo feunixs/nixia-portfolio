@@ -52,7 +52,7 @@ const getCommands = (dependencies) => {
           de: 'GNOME (Nixia Edition)',
           terminal: 'Nixia Terminal',
           skills: 'Jack of all trades',
-          contact: 'feunix@workmail.com',
+          contact: 'feunixwork@gmail.com',
         },
       }),
     },
@@ -75,7 +75,7 @@ const getCommands = (dependencies) => {
     },
     email: {
       description: 'Show my contact email.',
-      execute: () => 'You can reach me at: feunix@workmail.com',
+      execute: () => 'You can reach me at: feunixwork@gmail.com',
     },
     whoami: {
       description: 'Display user information.',

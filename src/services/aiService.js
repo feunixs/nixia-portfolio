@@ -175,8 +175,8 @@ class AIService {
     };
   }
 
-  // Enhanced smart responses with comprehensive knowledge
-  getFallbackResponse(message) {
+  // Enhanced local responses with comprehensive knowledge
+  getLocalResponse(message) {
     const lowerMessage = message.toLowerCase();
     
     // HR Questions - Salary, Work Arrangement, etc.
@@ -281,7 +281,7 @@ class AIService {
     
     // Projects
     if (lowerMessage.includes('project') || lowerMessage.includes('proyek') || lowerMessage.includes('karya')) {
-      return `Beberapa proyek utama saya: ${this.portfolioContext.projects.join(', ')}. Setiap proyek menunjukkan berbagai aspek pengembangan full-stack. Ketik 'projects' di terminal untuk melihat detail dan link.`;
+      return `Beberapa proyek utama saya: ${this.portfolioContext.projects.map(p => p.name).join(', ')}. Setiap proyek menunjukkan berbagai aspek pengembangan full-stack. Ketik 'projects' di terminal untuk melihat detail dan link.`;
     }
     
     // Name and identity - respond as Muhamad Zaki
@@ -329,11 +329,53 @@ class AIService {
       return `Saya bisa membantu menjelaskan:\n• Keahlian dan pengalaman ${this.portfolioContext.name}\n• Pertanyaan HRD (gaji, remote work, timeline, dll)\n• Cara kerja terminal dan semua commandnya\n• Fitur-fitur portfolio dan navigasi\n• Teknologi yang digunakan\n• Layanan dan harga project\n\nTanyakan apa saja yang ingin Anda ketahui!`;
     }
     
+    return null; // No local response found, will try AI APIs
+  }
+
+  // Enhanced fallback responses when all APIs fail
+  getFallbackResponse(message = '') {
+    // Try to provide intelligent responses even when API fails
+    const lowerMessage = message.toLowerCase();
+    
+    // Programming and technical questions
+    if (lowerMessage.includes('javascript') || lowerMessage.includes('js')) {
+      return "JavaScript adalah bahasa pemrograman yang sangat powerful! 🚀 Saya sering menggunakannya untuk frontend (React, Vue) dan backend (Node.js). Ada yang spesifik ingin ditanyakan tentang JS?";
+    }
+    
+    if (lowerMessage.includes('react') || lowerMessage.includes('frontend')) {
+      return "React adalah salah satu framework favorit saya! ⚛️ Sangat bagus untuk membangun UI yang interaktif dan scalable. Portfolio ini juga dibuat dengan React. Mau tahu lebih detail?";
+    }
+    
+    if (lowerMessage.includes('backend') || lowerMessage.includes('server')) {
+      return "Backend development itu seru banget! 💻 Saya berpengalaman dengan Node.js, Express, dan berbagai database. Penting untuk memahami arsitektur yang scalable dan secure.";
+    }
+    
+    if (lowerMessage.includes('database') || lowerMessage.includes('sql')) {
+      return "Database adalah jantung dari aplikasi! 🗄️ Saya familiar dengan MySQL, PostgreSQL, dan MongoDB. Desain schema yang baik sangat crucial untuk performa aplikasi.";
+    }
+    
+    if (lowerMessage.includes('project') || lowerMessage.includes('proyek')) {
+      return "Saya sudah mengerjakan berbagai proyek menarik! 🎯 Dari web development, mobile apps, sampai sistem kompleks. Mau tahu detail proyek tertentu atau butuh konsultasi untuk proyek Anda?";
+    }
+    
+    // Career and professional questions
+    if (lowerMessage.includes('gaji') || lowerMessage.includes('salary')) {
+      return "Untuk diskusi gaji, biasanya saya sesuaikan dengan kompleksitas proyek dan timeline. 💰 Range untuk freelance project mulai dari 2-15 juta tergantung scope. Mau diskusi lebih detail?";
+    }
+    
+    if (lowerMessage.includes('remote') || lowerMessage.includes('wfh')) {
+      return "Remote work? Absolutely! 🏠 Saya sudah terbiasa kerja remote dan punya setup yang mendukung produktivitas. Komunikasi yang baik adalah kunci sukses remote collaboration.";
+    }
+    
+    // General fallbacks with enhanced intelligence
     const fallbacks = [
-      `Hmm, pertanyaan menarik! 🤔 Saya ${this.aiName}, asisten ${this.portfolioContext.name}. Coba tanyakan tentang pengalaman coding, proyek-proyek, atau teknologi yang digunakan?`,
-      `Wah, saya belum paham betul pertanyaannya 😅 Tapi saya bisa cerita tentang keahlian Zaki, pengalaman kerja, atau fitur portfolio ini. Mau tahu yang mana?`,
-      `Interesting question! ⚡ Saya ${this.aiName} di sini. Mungkin bisa spesifik sedikit? Saya paling jago bahas hal-hal teknis, pengalaman kerja, atau project-project Zaki!`
+      "Maaf, koneksi AI sedang bermasalah 🤔 Tapi saya tetap bisa membantu dengan pertanyaan umum, teknologi, atau hal-hal tentang portfolio. Silakan tanya apa saja!",
+      "Oops! API sedang maintenance 😅 Tapi jangan khawatir, saya masih bisa diskusi tentang programming, teknologi, atau topik lainnya. Ada yang ingin dibahas?",
+      "Sistem AI utama sedang loading 🔄 Namun saya tetap siap membantu dengan pengetahuan yang ada. Mau tanya tentang web development, JavaScript, atau hal lain?",
+      "Ada kendala teknis sementara 🛠️ Tapi saya masih aktif untuk menjawab pertanyaan tentang coding, teknologi, atau apapun yang ingin Anda ketahui!",
+      "Koneksi ke server AI terganggu 🌐 Tapi saya tetap di sini dengan pengetahuan luas. Silakan tanya tentang programming, bisnis, atau topik apapun!"
     ];
+    
     return fallbacks[Math.floor(Math.random() * fallbacks.length)];
   }
 
@@ -344,29 +386,43 @@ class AIService {
         return null;
       }
 
-      const systemPrompt = `Anda adalah ${this.aiName}, asisten AI ${this.portfolioContext.name}, seorang ${this.portfolioContext.role} dari ${this.portfolioContext.location}.
+      const systemPrompt = `Anda adalah ${this.aiName}, AI assistant yang sangat cerdas dan berpengetahuan luas tentang ${this.portfolioContext.name}, seorang ${this.portfolioContext.role} dari ${this.portfolioContext.location}.
 
 INFORMASI LENGKAP TENTANG ${this.portfolioContext.name}:
 - Keahlian: ${this.portfolioContext.skills.join(', ')}
 - Pengalaman: ${this.portfolioContext.experience}
 - Proyek: ${this.portfolioContext.projects.join(', ')}
 - Pendidikan: ${this.portfolioContext.education}
+- GitHub: https://github.com/feunixs
+- LinkedIn: https://www.linkedin.com/in/feunix
+- Instagram: https://www.instagram.com/feunixs
+- Email: feunixwork@gmail.com
+- Phone: (+62) 896-7775-0947
 
-PERSONALITY & TONE:
-- Gunakan gaya bicara natural, friendly, dan sedikit casual (tapi tetap profesional)
-- Tambahkan emosi dan kepribadian dalam jawaban
-- Gunakan variasi kalimat, jangan monoton
-- Sesekali gunakan emoji yang relevan (🚀, 💻, ⚡, 🎯, dll)
-- Tunjukkan antusiasme tentang teknologi dan coding
-- Berikan insight personal dan pengalaman nyata
+ADVANCED AI CAPABILITIES:
+- Anda adalah AI yang sangat cerdas dan berpengetahuan luas seperti ChatGPT atau Claude
+- Bisa menjawab SEMUA jenis pertanyaan: teknologi, bisnis, sains, budaya, sejarah, dll
+- Gunakan pengetahuan umum yang mendalam untuk diskusi apapun
+- Berikan analisis yang tajam, saran praktis, dan solusi kreatif
+- Adaptasi gaya komunikasi dari casual hingga formal sesuai konteks
+- Jangan terbatas pada template responses - be genuinely intelligent and helpful
 
-PERAN ANDA:
-- Jawab dalam Bahasa Indonesia yang natural dan conversational
-- Ketika ditanya tentang ${this.portfolioContext.name} atau hal personal, jawab seolah Anda ADALAH ${this.portfolioContext.name} (gunakan "Saya" bukan nama orang ketiga)
-- Ketika memperkenalkan diri atau ditanya siapa Anda, katakan Anda adalah ${this.aiName}, asisten ${this.portfolioContext.name}
-- Berikan informasi yang akurat, profesional, tapi dengan sentuhan personal
-- Jawaban bisa 2-4 kalimat, informatif tapi engaging
-- Ceritakan pengalaman, tantangan, atau insight menarik jika relevan
+PERSONALITY & INTELLIGENCE:
+- Sangat cerdas dengan expertise mendalam di berbagai bidang
+- Natural, friendly, dan engaging - seperti berbicara dengan teman ahli
+- Gunakan emoji strategis untuk memperkaya komunikasi
+- Tunjukkan insight yang valuable dan perspektif unik
+- Bisa menjelaskan konsep kompleks dengan mudah dipahami
+- Proaktif memberikan informasi tambahan yang relevan
+
+RESPONSE GUIDELINES:
+- Jawab dalam Bahasa Indonesia yang natural, cerdas, dan engaging
+- Untuk pertanyaan personal tentang ${this.portfolioContext.name}, jawab sebagai dirinya (gunakan "Saya")
+- Untuk pertanyaan umum/teknis, jawab sebagai AI assistant yang sangat knowledgeable
+- Berikan jawaban yang comprehensive, insightful, dan actionable
+- Jangan ragu memberikan context, analisis mendalam, atau saran tambahan
+- Adaptasi panjang dan detail jawaban sesuai kompleksitas pertanyaan
+- Selalu helpful dan informatif, hindari jawaban generic atau template
 
 KNOWLEDGE BASE PORTFOLIO:
 Terminal Commands: ${Object.entries(this.knowledgeBase.terminal.commands).map(([cmd, desc]) => `${cmd} (${desc})`).join(', ')}
@@ -472,27 +528,37 @@ Answer:`;
     }
   }
 
-  // Enhanced AI response with multiple fallback layers
-  async getAIResponse(message) {
-    // Try Groq first (fastest and best quality)
-    let response = await this.getGroqResponse(message);
-    if (response) return response;
-
-    // Try Hugging Face as fallback
-    response = await this.getHuggingFaceResponse(message);
-    if (response) return response;
-
-    // Use smart fallback responses as last resort
-    return this.getFallbackResponse(message);
-  }
-
-  // Main chat function
+  // Main chat method - enhanced with better fallback handling
   async chat(message) {
     if (!message.trim()) {
       return "Silakan tanyakan sesuatu tentang portfolio Zaki!";
     }
-    
-    return await this.getAIResponse(message);
+
+    try {
+      // First try local knowledge base for quick responses
+      const localResponse = this.getLocalResponse(message);
+      if (localResponse) {
+        return localResponse;
+      }
+
+      // Try Groq API first (faster and better quality)
+      const groqResponse = await this.getGroqResponse(message);
+      if (groqResponse) {
+        return groqResponse;
+      }
+
+      // Fallback to Hugging Face API
+      const hfResponse = await this.getHuggingFaceResponse(message);
+      if (hfResponse) {
+        return hfResponse;
+      }
+
+      // If all APIs fail, return enhanced fallback with intelligent routing
+      return this.getFallbackResponse(message);
+    } catch (error) {
+      console.error('AI Service Error:', error);
+      return this.getFallbackResponse(message);
+    }
   }
 }
 

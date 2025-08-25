@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import TopBar from './components/TopBar';
 import Dock from './components/Dock';
 import DesktopIcon from './components/DesktopIcon';
 import Window from './components/Window';
-import Terminal from './components/apps/Terminal';
-import AboutMe from './components/apps/AboutMe';
-import CV from './components/apps/CV';
-import FolderWindow from './components/apps/FolderWindow';
-import TextViewer from './components/apps/TextViewer';
-import ImageViewer from './components/apps/ImageViewer';
-import ImageGalleryViewer from './components/apps/ImageGalleryViewer';
-import Settings from './components/apps/Settings';
+// Lazy load components for better performance
+const Terminal = lazy(() => import('./components/apps/Terminal'));
+const AboutMe = lazy(() => import('./components/apps/AboutMe'));
+const CV = lazy(() => import('./components/apps/CV'));
+const FolderWindow = lazy(() => import('./components/apps/FolderWindow'));
+const TextViewer = lazy(() => import('./components/apps/TextViewer'));
+const ImageViewer = lazy(() => import('./components/apps/ImageViewer'));
+const ImageGalleryViewer = lazy(() => import('./components/apps/ImageGalleryViewer'));
+const Settings = lazy(() => import('./components/apps/Settings'));
 import ErrorBoundary from './components/ErrorBoundary';
 import LoadingScreen from './components/LoadingScreen';
 import { initialDesktopIcons, getIconComponent } from './config/desktop.js';
@@ -170,39 +171,45 @@ function App() {
                 openWindow(desktopIcons.find((i) => i.id === 'about')),
             };
 
-            switch (win.type) {
-              case 'folder':
-                return (
-                  <FolderWindow folder={win.content} onOpenFile={openWindow} />
-                );
-              case 'file':
-                return <TextViewer content={win.content.content} />;
-              case 'image':
-                return (
-                  <ImageViewer
-                    src={win.content.src}
-                    label={win.content.label}
-                    projectUrl={win.content.projectUrl}
-                  />
-                );
-              case 'gallery':
-                return <ImageGalleryViewer sources={win.content.sources} />;
-              case 'app':
-                switch (win.appId) {
-                  case 'terminal':
-                    return <Terminal {...props} />;
-                  case 'about':
-                    return <AboutMe {...props} />;
-                  case 'cv':
-                    return <CV {...props} />;
-                  case 'settings':
-                    return <Settings {...props} />;
-                  default:
-                    return <div>Unknown App: {win.appId}</div>;
-                }
-              default:
-                return <div>Unknown window type: {win.type}</div>;
-            }
+            return (
+              <Suspense fallback={<div style={{padding: '20px', textAlign: 'center'}}>Loading...</div>}>
+                {(() => {
+                  switch (win.type) {
+                    case 'folder':
+                      return (
+                        <FolderWindow folder={win.content} onOpenFile={openWindow} />
+                      );
+                    case 'file':
+                      return <TextViewer content={win.content.content} />;
+                    case 'image':
+                      return (
+                        <ImageViewer
+                          src={win.content.src}
+                          label={win.content.label}
+                          projectUrl={win.content.projectUrl}
+                        />
+                      );
+                    case 'gallery':
+                      return <ImageGalleryViewer sources={win.content.sources} />;
+                    case 'app':
+                      switch (win.appId) {
+                        case 'terminal':
+                          return <Terminal {...props} />;
+                        case 'about':
+                          return <AboutMe {...props} />;
+                        case 'cv':
+                          return <CV {...props} />;
+                        case 'settings':
+                          return <Settings {...props} />;
+                        default:
+                          return <div>Unknown App: {win.appId}</div>;
+                      }
+                    default:
+                      return <div>Unknown window type: {win.type}</div>;
+                  }
+                })()}
+              </Suspense>
+            );
           };
 
           return (
