@@ -301,7 +301,7 @@ class AIService {
     
     // Greeting
     if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('halo') || lowerMessage.includes('hai')) {
-      return `Halo! Saya ${this.aiName}, asisten AI untuk ${this.portfolioContext.name}. Saya bisa membantu menjelaskan tentang keahlian, proyek, cara kerja terminal, fitur portfolio, dan menjawab pertanyaan HRD maupun pengunjung umum!`;
+      return `Halo! Saya ${this.aiName}, asisten AI untuk ${this.portfolioContext.name}. Saya bisa membantu menjelaskan tentang keahlian, pengalaman kerja, proyek-proyek, dan fitur-fitur portfolio ini!`;
     }
     
     // Help and guidance
@@ -309,7 +309,7 @@ class AIService {
       return `Saya bisa membantu menjelaskan:\n• Keahlian dan pengalaman ${this.portfolioContext.name}\n• Pertanyaan HRD (gaji, remote work, timeline, dll)\n• Cara kerja terminal dan semua commandnya\n• Fitur-fitur portfolio dan navigasi\n• Teknologi yang digunakan\n• Layanan dan harga project\n\nTanyakan apa saja yang ingin Anda ketahui!`;
     }
     
-    return `Saya ${this.aiName}, asisten AI ${this.portfolioContext.name}! Saya bisa menjawab pertanyaan HRD, pengunjung umum, menjelaskan keahlian, proyek, cara kerja terminal, fitur portfolio, dan semua aspek website ini. Tanyakan apa saja!`;
+    return `Saya ${this.aiName}, asisten AI ${this.portfolioContext.name}! Tanyakan tentang keahlian, pengalaman kerja, proyek-proyek, atau fitur portfolio ini. Saya siap membantu!`;
   }
 
   // Primary AI response using Groq API (faster and better quality)
