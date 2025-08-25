@@ -337,43 +337,71 @@ class AIService {
     // Try to provide intelligent responses even when API fails
     const lowerMessage = message.toLowerCase();
     
+    // Date and time questions - with real-time data
+    if (lowerMessage.includes('hari') || lowerMessage.includes('tanggal') || lowerMessage.includes('waktu') || lowerMessage.includes('jam')) {
+      const now = new Date();
+      const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+      const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+      
+      const dayName = days[now.getDay()];
+      const date = now.getDate();
+      const month = months[now.getMonth()];
+      const year = now.getFullYear();
+      const time = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      
+      return `Hari ini adalah hari ${dayName}, ${date} ${month} ${year}. Waktu sekarang pukul ${time} WIB. Semoga harimu menyenangkan! 😊`;
+    }
+    
+    // Weather and general day questions
+    if (lowerMessage.includes('cuaca') || lowerMessage.includes('cerah') || lowerMessage.includes('hujan')) {
+      const now = new Date();
+      const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+      const dayName = days[now.getDay()];
+      return `Hari ${dayName} ini semoga cerah dan produktif! ☀️ Saya tidak bisa cek cuaca real-time, tapi semoga cuacanya mendukung aktivitas Anda hari ini!`;
+    }
+
     // Programming and technical questions
     if (lowerMessage.includes('javascript') || lowerMessage.includes('js')) {
-      return "JavaScript adalah bahasa pemrograman yang sangat powerful! 🚀 Saya sering menggunakannya untuk frontend (React, Vue) dan backend (Node.js). Ada yang spesifik ingin ditanyakan tentang JS?";
+      return "JavaScript adalah bahasa pemrograman yang sangat powerful! 🚀 Zaki sering menggunakannya untuk frontend (React, Vue) dan backend (Node.js). Portfolio ini juga dibangun dengan JavaScript modern. Ada yang spesifik ingin ditanyakan tentang JS?";
     }
     
     if (lowerMessage.includes('react') || lowerMessage.includes('frontend')) {
-      return "React adalah salah satu framework favorit saya! ⚛️ Sangat bagus untuk membangun UI yang interaktif dan scalable. Portfolio ini juga dibuat dengan React. Mau tahu lebih detail?";
+      return "React adalah salah satu framework favorit Zaki! ⚛️ Sangat bagus untuk membangun UI yang interaktif dan scalable. Portfolio ini juga dibuat dengan React 19.1.0 terbaru. Mau tahu lebih detail tentang implementasinya?";
     }
     
     if (lowerMessage.includes('backend') || lowerMessage.includes('server')) {
-      return "Backend development itu seru banget! 💻 Saya berpengalaman dengan Node.js, Express, dan berbagai database. Penting untuk memahami arsitektur yang scalable dan secure.";
+      return "Backend development itu passion Zaki! 💻 Dia berpengalaman dengan Node.js, Express.js, Nest.js, Fastify, dan berbagai database. Penting untuk memahami arsitektur yang scalable dan secure.";
     }
     
     if (lowerMessage.includes('database') || lowerMessage.includes('sql')) {
-      return "Database adalah jantung dari aplikasi! 🗄️ Saya familiar dengan MySQL, PostgreSQL, dan MongoDB. Desain schema yang baik sangat crucial untuk performa aplikasi.";
+      return "Database adalah jantung dari aplikasi! 🗄️ Zaki familiar dengan MySQL, PostgreSQL, dan teknologi database modern lainnya. Desain schema yang baik sangat crucial untuk performa aplikasi.";
     }
     
     if (lowerMessage.includes('project') || lowerMessage.includes('proyek')) {
-      return "Saya sudah mengerjakan berbagai proyek menarik! 🎯 Dari web development, mobile apps, sampai sistem kompleks. Mau tahu detail proyek tertentu atau butuh konsultasi untuk proyek Anda?";
+      return "Zaki sudah mengerjakan berbagai proyek menarik! 🎯 Dari Nixia ERP (sistem distribusi), portfolio interaktif ini, sampai berbagai aplikasi web. Ketik 'projects' di terminal untuk melihat detail lengkap!";
     }
     
     // Career and professional questions
     if (lowerMessage.includes('gaji') || lowerMessage.includes('salary')) {
-      return "Untuk diskusi gaji, biasanya saya sesuaikan dengan kompleksitas proyek dan timeline. 💰 Range untuk freelance project mulai dari 2-15 juta tergantung scope. Mau diskusi lebih detail?";
+      return "Untuk diskusi gaji, Zaki biasanya sesuaikan dengan kompleksitas proyek dan timeline. 💰 Dia terbuka untuk negosiasi sesuai standar industri dan value yang diberikan. Mau diskusi lebih detail?";
     }
     
     if (lowerMessage.includes('remote') || lowerMessage.includes('wfh')) {
-      return "Remote work? Absolutely! 🏠 Saya sudah terbiasa kerja remote dan punya setup yang mendukung produktivitas. Komunikasi yang baik adalah kunci sukses remote collaboration.";
+      return "Remote work? Absolutely! 🏠 Zaki sudah terbiasa kerja remote dan punya setup yang mendukung produktivitas. Pengalaman freelance 2022-2023 membuktikan kemampuan kerja remote yang baik.";
     }
     
-    // General fallbacks with enhanced intelligence
+    // General fallbacks with enhanced intelligence and real-time context
+    const now = new Date();
+    const time = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+    const dayName = days[now.getDay()];
+    
     const fallbacks = [
-      "Maaf, koneksi AI sedang bermasalah 🤔 Tapi saya tetap bisa membantu dengan pertanyaan umum, teknologi, atau hal-hal tentang portfolio. Silakan tanya apa saja!",
-      "Oops! API sedang maintenance 😅 Tapi jangan khawatir, saya masih bisa diskusi tentang programming, teknologi, atau topik lainnya. Ada yang ingin dibahas?",
-      "Sistem AI utama sedang loading 🔄 Namun saya tetap siap membantu dengan pengetahuan yang ada. Mau tanya tentang web development, JavaScript, atau hal lain?",
-      "Ada kendala teknis sementara 🛠️ Tapi saya masih aktif untuk menjawab pertanyaan tentang coding, teknologi, atau apapun yang ingin Anda ketahui!",
-      "Koneksi ke server AI terganggu 🌐 Tapi saya tetap di sini dengan pengetahuan luas. Silakan tanya tentang programming, bisnis, atau topik apapun!"
+      `Maaf, koneksi AI sedang bermasalah 🤔 Tapi saya tetap bisa membantu dengan pertanyaan tentang Zaki, teknologi, atau portfolio ini. Sekarang hari ${dayName} pukul ${time} WIB. Silakan tanya apa saja!`,
+      `Oops! API sedang maintenance 😅 Tapi jangan khawatir, saya masih bisa diskusi tentang programming, pengalaman Zaki, atau topik lainnya. Ada yang ingin dibahas?`,
+      `Sistem AI utama sedang loading 🔄 Namun saya tetap siap membantu dengan pengetahuan tentang Zaki dan teknologi. Mau tanya tentang web development, proyek-proyeknya, atau hal lain?`,
+      `Ada kendala teknis sementara 🛠️ Tapi saya masih aktif untuk menjawab pertanyaan tentang Zaki, coding, teknologi, atau apapun yang ingin Anda ketahui!`,
+      `Koneksi ke server AI terganggu 🌐 Tapi saya tetap di sini siap membantu. Silakan tanya tentang pengalaman Zaki, programming, atau topik apapun!`
     ];
     
     return fallbacks[Math.floor(Math.random() * fallbacks.length)];
