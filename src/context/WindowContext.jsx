@@ -62,8 +62,8 @@ export const WindowProvider = ({ children }) => {
         content: icon, // Pass the whole icon object for context
         size: { width: 600, height: 400 },
         position: {
-          x: 150 + Object.keys(windows).length * 20,
-          y: 100 + Object.keys(windows).length * 20,
+          x: 150 + Object.keys(windows).length * 30,
+          y: 100 + Object.keys(windows).length * 30,
         },
         isMinimized: false,
         isMaximized: false,

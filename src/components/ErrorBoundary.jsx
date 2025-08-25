@@ -13,8 +13,7 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    // Log the error to an error reporting service or console
-    console.error('Uncaught error in a component:', error, errorInfo);
+    // Error caught by boundary - silent handling for production
   }
 
   render() {

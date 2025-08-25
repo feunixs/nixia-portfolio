@@ -485,7 +485,7 @@ Jawab dalam bahasa Indonesia dengan profesional, informatif, dan membantu. Jawab
             { role: 'system', content: systemPrompt },
             { role: 'user', content: message }
           ],
-          max_tokens: 150,
+          max_tokens: 200,
           temperature: 0.7
         })
       });
@@ -502,7 +502,7 @@ Jawab dalam bahasa Indonesia dengan profesional, informatif, dan membantu. Jawab
       return null;
       
     } catch (error) {
-      console.log('Groq API error:', error.message);
+      // Silent error handling for production
       return null;
     }
   }
@@ -531,7 +531,7 @@ Answer:`;
         body: JSON.stringify({
           inputs: prompt,
           parameters: {
-            max_length: 150,
+            max_length: 200,
             temperature: 0.7,
             do_sample: true,
             return_full_text: false
@@ -551,7 +551,7 @@ Answer:`;
       return null;
       
     } catch (error) {
-      console.log('Hugging Face API error:', error.message);
+      // Silent error handling for production
       return null;
     }
   }
@@ -584,7 +584,7 @@ Answer:`;
       // If all APIs fail, return enhanced fallback with intelligent routing
       return this.getFallbackResponse(message);
     } catch (error) {
-      console.error('AI Service Error:', error);
+      // Silent error handling for production
       return this.getFallbackResponse(message);
     }
   }
