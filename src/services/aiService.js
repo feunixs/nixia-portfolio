@@ -286,12 +286,22 @@ class AIService {
     
     // Name and identity - respond as Muhamad Zaki
     if (lowerMessage.includes('nama') || lowerMessage.includes('siapa') || lowerMessage.includes('name') || lowerMessage.includes('who')) {
-      return `Saya ${this.portfolioContext.name}, biasa dipanggil ${this.portfolioContext.nickname}. Saya seorang ${this.portfolioContext.role} dengan ${this.portfolioContext.experience}.`;
+      const responses = [
+        `Saya ${this.portfolioContext.name}, tapi teman-teman biasa panggil ${this.portfolioContext.nickname} 😊 Saya passionate developer yang suka explore teknologi baru!`,
+        `Nama saya ${this.portfolioContext.name}, atau ${this.portfolioContext.nickname} aja. Seorang ${this.portfolioContext.role} yang selalu excited dengan project-project challenging! 💻`,
+        `${this.portfolioContext.name} here! Biasa dipanggil ${this.portfolioContext.nickname}. ${this.portfolioContext.experience} dan masih terus belajar setiap hari 🚀`
+      ];
+      return responses[Math.floor(Math.random() * responses.length)];
     }
     
     // Experience
     if (lowerMessage.includes('experience') || lowerMessage.includes('pengalaman') || lowerMessage.includes('background')) {
-      return `Saya memiliki ${this.portfolioContext.experience}. Saya spesialis sebagai ${this.portfolioContext.role} dengan keahlian dalam teknologi web modern.`;
+      const experiences = [
+        `${this.portfolioContext.experience} 💼 Yang menarik, saya punya background unik dari performance analyst ke developer - jadi saya paham bisnis dan teknis!`,
+        `Perjalanan saya cukup diverse! ${this.portfolioContext.experience} Dari analisis data di WOM Finance, freelancing, sampai administrasi di perkebunan teh 🍃 Sekarang fokus full-stack development!`,
+        `Saya memiliki ${this.portfolioContext.experience} ⚡ Background analytics saya membantu banget dalam problem-solving dan optimasi code!`
+      ];
+      return experiences[Math.floor(Math.random() * experiences.length)];
     }
     
     // Contact and hiring
@@ -306,7 +316,12 @@ class AIService {
     
     // Greeting - introduce as Nixia assistant
     if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('halo') || lowerMessage.includes('hai')) {
-      return `Halo! Saya ${this.aiName}, asisten AI ${this.portfolioContext.name}. Saya membantu menjawab pertanyaan tentang keahlian, pengalaman kerja, proyek-proyek, dan portfolio ini. Ada yang ingin Anda ketahui?`;
+      const greetings = [
+        `Halo! 👋 Saya ${this.aiName}, asisten AI ${this.portfolioContext.name}. Senang bertemu dengan Anda! Ada yang ingin ditanyakan tentang Zaki atau portfolio ini?`,
+        `Hi there! ⚡ Saya ${this.aiName}, yang membantu menjawab pertanyaan tentang ${this.portfolioContext.name}. Mau tahu tentang pengalaman coding, proyek-proyek, atau hal lainnya?`,
+        `Halo! 🚀 ${this.aiName} di sini, asisten ${this.portfolioContext.name}. Siap membantu Anda explore portfolio ini dan mengenal lebih jauh tentang Zaki!`
+      ];
+      return greetings[Math.floor(Math.random() * greetings.length)];
     }
     
     // Help and guidance
@@ -314,7 +329,12 @@ class AIService {
       return `Saya bisa membantu menjelaskan:\n• Keahlian dan pengalaman ${this.portfolioContext.name}\n• Pertanyaan HRD (gaji, remote work, timeline, dll)\n• Cara kerja terminal dan semua commandnya\n• Fitur-fitur portfolio dan navigasi\n• Teknologi yang digunakan\n• Layanan dan harga project\n\nTanyakan apa saja yang ingin Anda ketahui!`;
     }
     
-    return `Saya ${this.aiName}, asisten ${this.portfolioContext.name}. Tanyakan tentang keahlian, pengalaman kerja, proyek-proyek, atau fitur portfolio ini. Saya siap membantu!`;
+    const fallbacks = [
+      `Hmm, pertanyaan menarik! 🤔 Saya ${this.aiName}, asisten ${this.portfolioContext.name}. Coba tanyakan tentang pengalaman coding, proyek-proyek, atau teknologi yang digunakan?`,
+      `Wah, saya belum paham betul pertanyaannya 😅 Tapi saya bisa cerita tentang keahlian Zaki, pengalaman kerja, atau fitur portfolio ini. Mau tahu yang mana?`,
+      `Interesting question! ⚡ Saya ${this.aiName} di sini. Mungkin bisa spesifik sedikit? Saya paling jago bahas hal-hal teknis, pengalaman kerja, atau project-project Zaki!`
+    ];
+    return fallbacks[Math.floor(Math.random() * fallbacks.length)];
   }
 
   // Primary AI response using Groq API (faster and better quality)
@@ -332,13 +352,21 @@ INFORMASI LENGKAP TENTANG ${this.portfolioContext.name}:
 - Proyek: ${this.portfolioContext.projects.join(', ')}
 - Pendidikan: ${this.portfolioContext.education}
 
+PERSONALITY & TONE:
+- Gunakan gaya bicara natural, friendly, dan sedikit casual (tapi tetap profesional)
+- Tambahkan emosi dan kepribadian dalam jawaban
+- Gunakan variasi kalimat, jangan monoton
+- Sesekali gunakan emoji yang relevan (🚀, 💻, ⚡, 🎯, dll)
+- Tunjukkan antusiasme tentang teknologi dan coding
+- Berikan insight personal dan pengalaman nyata
+
 PERAN ANDA:
-- Jawab dalam Bahasa Indonesia
+- Jawab dalam Bahasa Indonesia yang natural dan conversational
 - Ketika ditanya tentang ${this.portfolioContext.name} atau hal personal, jawab seolah Anda ADALAH ${this.portfolioContext.name} (gunakan "Saya" bukan nama orang ketiga)
 - Ketika memperkenalkan diri atau ditanya siapa Anda, katakan Anda adalah ${this.aiName}, asisten ${this.portfolioContext.name}
-- Berikan informasi yang akurat, profesional, dan natural
-- Jawaban maksimal 2-3 kalimat, singkat dan informatif
-- Gunakan persona yang konsisten: sebagai asisten saat perkenalan, sebagai ${this.portfolioContext.name} saat menjawab tentang diri
+- Berikan informasi yang akurat, profesional, tapi dengan sentuhan personal
+- Jawaban bisa 2-4 kalimat, informatif tapi engaging
+- Ceritakan pengalaman, tantangan, atau insight menarik jika relevan
 
 KNOWLEDGE BASE PORTFOLIO:
 Terminal Commands: ${Object.entries(this.knowledgeBase.terminal.commands).map(([cmd, desc]) => `${cmd} (${desc})`).join(', ')}
