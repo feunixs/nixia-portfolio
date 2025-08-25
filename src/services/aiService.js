@@ -23,7 +23,7 @@ class AIService {
       phone: "(+62) 896-7775-0947",
       location: "Jakarta, Indonesia",
       skills: ["Next.js", "React.js", "Vue.js", "Node.js", "Express.js", "Fastify", "Nest.js", "MySQL", "PostgreSQL", "UI/UX Design"],
-      experience: "5+ tahun pengalaman profesional (2020-2025)",
+      experience: "5+ tahun pengalaman profesional di Performance Analysis (WOM Finance), Freelance Web Development, dan sebelumnya sebagai Administrator di PT. Perkebunan Nusantara VI. Saat ini sedang mencari pekerjaan dan siap bekerja secepatnya di Jakarta",
       workHistory: [
         {
           company: "PT. PERKEBUNAN NUSANTARA VI",
@@ -153,7 +153,7 @@ class AIService {
           "overtime": "Fleksibel dengan deadline ketat. Pengalaman menangani target penjualan di WOM Finance dan deadline produksi di PTPN VI (35 ton/hari)."
         },
         visitor: {
-          "siapa": "Muhamad Zaki (Feunix) adalah Full Stack Developer & Administrator dengan 5+ tahun pengalaman profesional. Background di Performance Analysis, Freelance Web Development, dan saat ini Administrator di PTPN VI.",
+          "siapa": "Muhamad Zaki (Feunix) adalah Full Stack Developer & Administrator dengan pengalaman profesional di Performance Analysis (WOM Finance), Freelance Web Development, dan sebelumnya sebagai Administrator di PT. Perkebunan Nusantara VI. Saat ini sedang mencari pekerjaan dan siap bekerja secepatnya di Jakarta",
           "portofolio": "Portfolio ini dibuat untuk showcase skills dan projects, menggunakan design macOS yang interaktif. Menampilkan kemampuan frontend, backend, dan UI/UX design.",
           "kontak": "Email: feunixwork@gmail.com, Phone: (+62) 896-7775-0947. Bisa juga ketik 'email' atau 'socials' di terminal, atau lihat CV lengkap dengan 'open cv'.",
           "teknologi": "Expert dalam Next.js, React.js, Vue.js, Node.js, Express.js, Fastify, Nest.js, MySQL, PostgreSQL. Juga berpengalaman UI/UX Design dan Graphic Design.",
@@ -276,32 +276,37 @@ class AIService {
     
     // Skills and expertise
     if (lowerMessage.includes('skill') || lowerMessage.includes('keahlian')) {
-      return `${this.portfolioContext.name} memiliki keahlian dalam: ${this.portfolioContext.skills.join(', ')}. Beliau memiliki ${this.portfolioContext.experience} dengan fokus pada teknologi web modern.`;
+      return `Saya memiliki keahlian dalam: ${this.portfolioContext.skills.join(', ')}. Saya memiliki ${this.portfolioContext.experience} dengan fokus pada teknologi web modern.`;
     }
     
     // Projects
     if (lowerMessage.includes('project') || lowerMessage.includes('proyek') || lowerMessage.includes('karya')) {
-      return `Beberapa proyek utama ${this.portfolioContext.name}: ${this.portfolioContext.projects.join(', ')}. Setiap proyek menunjukkan berbagai aspek pengembangan full-stack. Ketik 'projects' di terminal untuk melihat detail dan link.`;
+      return `Beberapa proyek utama saya: ${this.portfolioContext.projects.join(', ')}. Setiap proyek menunjukkan berbagai aspek pengembangan full-stack. Ketik 'projects' di terminal untuk melihat detail dan link.`;
+    }
+    
+    // Name and identity - respond as Muhamad Zaki
+    if (lowerMessage.includes('nama') || lowerMessage.includes('siapa') || lowerMessage.includes('name') || lowerMessage.includes('who')) {
+      return `Saya ${this.portfolioContext.name}, biasa dipanggil ${this.portfolioContext.nickname}. Saya seorang ${this.portfolioContext.role} dengan ${this.portfolioContext.experience}.`;
     }
     
     // Experience
     if (lowerMessage.includes('experience') || lowerMessage.includes('pengalaman') || lowerMessage.includes('background')) {
-      return `${this.portfolioContext.name} memiliki ${this.portfolioContext.experience}. Beliau spesialis sebagai ${this.portfolioContext.role} dengan keahlian dalam teknologi web modern.`;
+      return `Saya memiliki ${this.portfolioContext.experience}. Saya spesialis sebagai ${this.portfolioContext.role} dengan keahlian dalam teknologi web modern.`;
     }
     
     // Contact and hiring
     if (lowerMessage.includes('contact') || lowerMessage.includes('kontak') || lowerMessage.includes('hire') || lowerMessage.includes('kerja')) {
-      return `${this.portfolioContext.name} tersedia untuk proyek freelance dan kesempatan kerja full-time! Ketik 'email' untuk melihat kontak atau 'socials' untuk media sosial. Anda juga bisa buka CV dengan 'open cv'.`;
+      return `Saya tersedia untuk proyek freelance dan kesempatan kerja full-time! Ketik 'email' untuk melihat kontak atau 'socials' untuk media sosial. Anda juga bisa buka CV dengan 'open cv'.`;
     }
     
     // Education
     if (lowerMessage.includes('education') || lowerMessage.includes('pendidikan') || lowerMessage.includes('kuliah')) {
-      return `${this.portfolioContext.name} memiliki ${this.portfolioContext.education} dan terus belajar teknologi baru untuk mengikuti tren industri.`;
+      return `Saya memiliki ${this.portfolioContext.education} dan terus belajar teknologi baru untuk mengikuti tren industri.`;
     }
     
-    // Greeting
+    // Greeting - introduce as Nixia assistant
     if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('halo') || lowerMessage.includes('hai')) {
-      return `Halo! Saya ${this.aiName}, asisten AI untuk ${this.portfolioContext.name}. Saya bisa membantu menjelaskan tentang keahlian, pengalaman kerja, proyek-proyek, dan fitur-fitur portfolio ini!`;
+      return `Halo! Saya ${this.aiName}, asisten AI ${this.portfolioContext.name}. Saya membantu menjawab pertanyaan tentang keahlian, pengalaman kerja, proyek-proyek, dan portfolio ini. Ada yang ingin Anda ketahui?`;
     }
     
     // Help and guidance
@@ -309,7 +314,7 @@ class AIService {
       return `Saya bisa membantu menjelaskan:\n• Keahlian dan pengalaman ${this.portfolioContext.name}\n• Pertanyaan HRD (gaji, remote work, timeline, dll)\n• Cara kerja terminal dan semua commandnya\n• Fitur-fitur portfolio dan navigasi\n• Teknologi yang digunakan\n• Layanan dan harga project\n\nTanyakan apa saja yang ingin Anda ketahui!`;
     }
     
-    return `Saya ${this.aiName}, asisten AI ${this.portfolioContext.name}! Tanyakan tentang keahlian, pengalaman kerja, proyek-proyek, atau fitur portfolio ini. Saya siap membantu!`;
+    return `Saya ${this.aiName}, asisten ${this.portfolioContext.name}. Tanyakan tentang keahlian, pengalaman kerja, proyek-proyek, atau fitur portfolio ini. Saya siap membantu!`;
   }
 
   // Primary AI response using Groq API (faster and better quality)
@@ -319,13 +324,21 @@ class AIService {
         return null;
       }
 
-      const systemPrompt = `Anda adalah ${this.aiName}, asisten AI untuk ${this.portfolioContext.name}, seorang ${this.portfolioContext.role} dari ${this.portfolioContext.location}.
+      const systemPrompt = `Anda adalah ${this.aiName}, asisten AI ${this.portfolioContext.name}, seorang ${this.portfolioContext.role} dari ${this.portfolioContext.location}.
 
 INFORMASI LENGKAP TENTANG ${this.portfolioContext.name}:
 - Keahlian: ${this.portfolioContext.skills.join(', ')}
 - Pengalaman: ${this.portfolioContext.experience}
 - Proyek: ${this.portfolioContext.projects.join(', ')}
 - Pendidikan: ${this.portfolioContext.education}
+
+PERAN ANDA:
+- Jawab dalam Bahasa Indonesia
+- Ketika ditanya tentang ${this.portfolioContext.name} atau hal personal, jawab seolah Anda ADALAH ${this.portfolioContext.name} (gunakan "Saya" bukan nama orang ketiga)
+- Ketika memperkenalkan diri atau ditanya siapa Anda, katakan Anda adalah ${this.aiName}, asisten ${this.portfolioContext.name}
+- Berikan informasi yang akurat, profesional, dan natural
+- Jawaban maksimal 2-3 kalimat, singkat dan informatif
+- Gunakan persona yang konsisten: sebagai asisten saat perkenalan, sebagai ${this.portfolioContext.name} saat menjawab tentang diri
 
 KNOWLEDGE BASE PORTFOLIO:
 Terminal Commands: ${Object.entries(this.knowledgeBase.terminal.commands).map(([cmd, desc]) => `${cmd} (${desc})`).join(', ')}
