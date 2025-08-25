@@ -68,7 +68,7 @@
 }
 
 .titleBar {
-  height: 48px;
+  height: 56px;
   background-color: var(--title-bar-bg);
   display: flex;
   align-items: center;
@@ -99,14 +99,16 @@
 .controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  min-width: 120px;
+  justify-content: flex-end;
 }
 
 .control {
   background: rgba(255, 255, 255, 0.05);
   border: none;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -117,6 +119,7 @@
     background-color 0.2s ease,
     color 0.2s ease;
   padding: 0;
+  font-size: 1.1rem;
 }
 
 /* Desktop: smaller controls */
@@ -124,6 +127,7 @@
   .control {
     width: 24px;
     height: 24px;
+    font-size: 0.9rem;
   }
 }
 
